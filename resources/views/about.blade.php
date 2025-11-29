@@ -239,14 +239,11 @@
                         <div
                             class="relative w-40 h-40 bg-gradient-to-br from-indigo-400 to-violet-400 rounded-full flex items-center justify-center text-white text-4xl font-bold"
                         >
-                            JD
+                            MH
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-1">John Doe</h3>
-                    <p class="text-sm text-indigo-600 font-medium mb-2">Founder & Editor</p>
-                    <p class="text-sm text-slate-600">
-                        Full-stack developer with 10+ years of experience in web technologies.
-                    </p>
+                    <h3 class="text-xl font-bold text-slate-900 mb-1">MH TOUFIK</h3>
+                    <p class="text-sm text-indigo-600 font-medium mb-2">Founder & CEO</p>
                 </div>
 
                 <!-- Team Member 2 -->
@@ -258,14 +255,11 @@
                         <div
                             class="relative w-40 h-40 bg-gradient-to-br from-violet-400 to-fuchsia-400 rounded-full flex items-center justify-center text-white text-4xl font-bold"
                         >
-                            JS
+                            MH
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-1">Jane Smith</h3>
-                    <p class="text-sm text-violet-600 font-medium mb-2">Content Curator</p>
-                    <p class="text-sm text-slate-600">
-                        Tech journalist passionate about making complex topics accessible.
-                    </p>
+                    <h3 class="text-xl font-bold text-slate-900 mb-1">Mobarak Hossen</h3>
+                    <p class="text-sm text-violet-600 font-medium mb-2">Designer & CTO</p>
                 </div>
 
                 <!-- Team Member 3 -->
@@ -277,14 +271,11 @@
                         <div
                             class="relative w-40 h-40 bg-gradient-to-br from-fuchsia-400 to-pink-400 rounded-full flex items-center justify-center text-white text-4xl font-bold"
                         >
-                            MJ
+                            JH
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-1">Mike Johnson</h3>
-                    <p class="text-sm text-fuchsia-600 font-medium mb-2">Lead Designer</p>
-                    <p class="text-sm text-slate-600">
-                        UI/UX designer focused on creating beautiful, intuitive experiences.
-                    </p>
+                    <h3 class="text-xl font-bold text-slate-900 mb-1">Jubayer Hossen</h3>
+                    <p class="text-sm text-fuchsia-600 font-medium mb-2">Lead Developer & COO</p>
                 </div>
 
                 <!-- Team Member 4 -->
@@ -296,14 +287,11 @@
                         <div
                             class="relative w-40 h-40 bg-gradient-to-br from-pink-400 to-rose-400 rounded-full flex items-center justify-center text-white text-4xl font-bold"
                         >
-                            SW
+                            SA
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-1">Sarah Wilson</h3>
-                    <p class="text-sm text-pink-600 font-medium mb-2">Community Manager</p>
-                    <p class="text-sm text-slate-600">
-                        Building and nurturing our vibrant community of tech enthusiasts.
-                    </p>
+                    <h3 class="text-xl font-bold text-slate-900 mb-1">Shuvo Ahmed</h3>
+                    <p class="text-sm text-pink-600 font-medium mb-2">Marketing Head</p>
                 </div>
             </div>
         </div>

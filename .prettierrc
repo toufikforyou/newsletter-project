@@ -1,0 +1,44 @@
+{
+  "printWidth": 120,
+  "tabWidth": 4,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "plugins": ["prettier-plugin-blade"],
+  "overrides": [
+    {
+      "files": ["*.blade.php"],
+      "options": {
+        "parser": "blade",
+        "printWidth": 120,
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": ["*.php"],
+      "options": {
+        "printWidth": 120,
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": ["*.css"],
+      "options": {
+        "printWidth": 120,
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": ["*.js"],
+      "options": {
+        "printWidth": 120,
+        "tabWidth": 4,
+        "singleQuote": true
+      }
+    }
+  ]
+}

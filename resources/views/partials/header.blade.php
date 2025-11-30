@@ -1,5 +1,5 @@
 <nav class="z-[100] w-full py-6 px-6 md:px-12 flex justify-between items-center max-w-7xl mx-auto relative">
-    <div class="text-2xl font-bold tracking-tighter text-indigo-600 flex items-center gap-2">
+    <a href="{{ url('/') }}" class="text-2xl font-bold tracking-tighter text-indigo-600 flex items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
             <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
             <path
@@ -7,7 +7,7 @@
             />
         </svg>
         <span>Newsletter</span>
-    </div>
+    </a>
 
     <button id="toggle" class="md:hidden text-slate-600 hover:text-indigo-600">
         <span id="icon" class="material-icons text-3xl">menu</span>
@@ -19,7 +19,7 @@
     >
         <div class="flex flex-col md:flex-row md:items-center md:gap-10 space-y-4 md:space-y-0">
             <a href="{{ url('/') }}" class="text-sm font-medium text-slate-600 hover:text-indigo-600">Home</a>
-            <a href="{{ url('/about') }}" class="text-sm font-medium text-slate-600 hover:text-indigo-600">About</a>
+            <a href="#" class="text-sm font-medium text-slate-600 hover:text-indigo-600">About</a>
             <a href="{{ url('/blog') }}" class="text-sm font-medium text-slate-600 hover:text-indigo-600">Blog</a>
             <a href="{{ url('/contact') }}" class="text-sm font-medium text-slate-600 hover:text-indigo-600">
                 Contact

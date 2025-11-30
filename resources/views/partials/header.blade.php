@@ -18,10 +18,12 @@
         class="hidden w-full md:w-auto md:flex md:items-center md:gap-10 absolute md:static left-0 top-[72px] z-[10] bg-white md:bg-transparent md:border-none shadow-md md:shadow-none px-6 py-4 md:p-0 space-y-4 md:space-y-0"
     >
         <div class="flex flex-col md:flex-row md:items-center md:gap-10 space-y-4 md:space-y-0">
-            <a href="#" class="text-sm font-medium text-slate-600 hover:text-indigo-600">Home</a>
+            <a href="{{ url('/') }}" class="text-sm font-medium text-slate-600 hover:text-indigo-600">Home</a>
             <a href="#" class="text-sm font-medium text-slate-600 hover:text-indigo-600">About</a>
             <a href="#" class="text-sm font-medium text-slate-600 hover:text-indigo-600">Blog</a>
-            <a href="#" class="text-sm font-medium text-slate-600 hover:text-indigo-600">Contact</a>
+            <a href="{{ url('/contact') }}" class="text-sm font-medium text-slate-600 hover:text-indigo-600">
+                Contact
+            </a>
         </div>
 
         <a

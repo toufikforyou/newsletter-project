@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'TechNews - The Daily Brief for Developers & Engineers')
+@section('title', 'TechNews - The Weekly Brief for Developers & Engineers')
 @section('description', 'Join 50,000+ developers receiving the latest insights on software engineering, system architecture, and emerging tech trends.')
 
 @section('content')
@@ -27,7 +27,7 @@
                     </h1>
                     
                     <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed max-w-lg">
-                        Join 50,000+ developers, engineers, and tech leaders who rely on TechNews for their daily industry insights.
+                        Join 50,000+ developers, engineers, and tech leaders who rely on TechNews for their weekly industry insights.
                     </p>
 
                     <!-- Subscription Form -->
@@ -167,7 +167,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Trusted by Tech Leaders</h2>
-                <p class="mt-4 text-lg text-slate-600">See why CTOs and Senior Engineers read our daily updates.</p>
+                <p class="mt-4 text-lg text-slate-600">See why CTOs and Senior Engineers read our weekly updates.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Testimonial 1 -->
@@ -234,7 +234,7 @@
                     <!-- Step 3 -->
                     <div class="bg-white p-6 text-center">
                         <div class="w-16 h-16 mx-auto bg-sky-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-sky-200">3</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3">Daily Briefing</h3>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Weekly Briefing</h3>
                         <p class="text-slate-600">We compile the most critical updates into a concise, easy-to-read format for you.</p>
                     </div>
                 </div>
@@ -341,7 +341,7 @@
     <section class="py-20 bg-slate-900">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Stay Informed. Stay Ahead.</h2>
-            <p class="text-blue-200 text-lg mb-10 max-w-2xl mx-auto">Join the fastest-growing community of tech professionals and get your daily news briefing.</p>
+            <p class="text-blue-200 text-lg mb-10 max-w-2xl mx-auto">Join the fastest-growing community of tech professionals and get your weekly news briefing.</p>
             <form class="max-w-md mx-auto relative flex items-center bg-white/10 rounded-xl p-2 ring-1 ring-white/20 backdrop-blur-sm">
                 <input
                     type="email"

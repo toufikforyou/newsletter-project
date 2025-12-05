@@ -55,7 +55,7 @@
             <!-- Newsletter -->
             <div>
                 <h3 class="text-white font-bold mb-6">Stay Updated</h3>
-                <p class="text-slate-400 mb-4 text-sm">Join 50,000+ developers receiving our daily tech briefing.</p>
+                <p class="text-slate-400 mb-4 text-sm">Join 50,000+ developers receiving our weekly tech briefing.</p>
                 <form class="space-y-3">
                     <input type="email" placeholder="Enter your email" class="w-full px-4 py-2.5 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all placeholder-slate-500">
                     <button type="submit" class="w-full px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold transition-colors shadow-lg shadow-blue-900/20">Subscribe</button>

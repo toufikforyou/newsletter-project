@@ -49,7 +49,7 @@
                         <span>Profile Settings</span>
                     </a>
                     
-                    <a href="{{ url('/') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors">
+                    <a href="{{ url('/') }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors">
                         <span class="material-icons">home</span>
                         <span>View Site</span>
                     </a>
@@ -71,7 +71,7 @@
             <header class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-10">
                 <div class="px-8 py-4 flex items-center justify-between">
                     <h1 class="text-2xl font-bold text-slate-900">@yield('page_title', 'Dashboard')</h1>
-                    <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-4">
                         <div class="flex items-center gap-3 px-4 py-2 bg-slate-50 rounded-lg">
                             @if(Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_picture)
                                 <img src="{{ asset('storage/' . Auth::guard('admin')->user()->profile_picture) }}" alt="Profile" class="w-8 h-8 rounded-full object-cover">
@@ -83,6 +83,13 @@
                                 <span class="text-xs text-slate-500">{{ ucfirst(Auth::guard('admin')->user()->role ?? 'admin') }}</span>
                             </div>
                         </div>
+                        <form method="POST" action="{{ route('admin.logout') }}">
+                            @csrf
+                            <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition text-sm font-semibold shadow-sm">
+                                <span class="material-icons text-base">logout</span>
+                                <span>Logout</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </header>

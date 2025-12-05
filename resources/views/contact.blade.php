@@ -62,25 +62,44 @@
 
                 <!-- Contact Form -->
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-                    <form class="space-y-6">
+                    @if(session('success'))
+                        <div class="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
+                        @csrf
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label for="first-name" class="block text-sm font-medium text-slate-700 mb-2">First Name</label>
                                 <input
                                     type="text"
                                     id="first-name"
-                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                                    name="first_name"
+                                    value="{{ old('first_name') }}"
+                                    class="w-full px-4 py-3 rounded-xl border @error('first_name') border-red-500 @else border-slate-200 @enderror focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
                                     placeholder="Jane"
+                                    required
                                 />
+                                @error('first_name')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div>
                                 <label for="last-name" class="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
                                 <input
                                     type="text"
                                     id="last-name"
-                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                                    name="last_name"
+                                    value="{{ old('last_name') }}"
+                                    class="w-full px-4 py-3 rounded-xl border @error('last_name') border-red-500 @else border-slate-200 @enderror focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
                                     placeholder="Doe"
+                                    required
                                 />
+                                @error('last_name')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
 
@@ -89,32 +108,49 @@
                             <input
                                 type="email"
                                 id="email"
-                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                                name="email"
+                                value="{{ old('email') }}"
+                                class="w-full px-4 py-3 rounded-xl border @error('email') border-red-500 @else border-slate-200 @enderror focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
                                 placeholder="jane@example.com"
+                                required
                             />
+                            @error('email')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
                             <label for="subject" class="block text-sm font-medium text-slate-700 mb-2">Subject</label>
                             <select
                                 id="subject"
-                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all bg-white"
+                                name="subject"
+                                class="w-full px-4 py-3 rounded-xl border @error('subject') border-red-500 @else border-slate-200 @enderror focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all bg-white"
+                                required
                             >
-                                <option>General Inquiry</option>
-                                <option>News Tip</option>
-                                <option>Advertising</option>
-                                <option>Report a Bug</option>
+                                <option value="" disabled {{ old('subject') ? '' : 'selected' }}>Select a subject</option>
+                                <option value="General Inquiry" {{ old('subject') == 'General Inquiry' ? 'selected' : '' }}>General Inquiry</option>
+                                <option value="News Tip" {{ old('subject') == 'News Tip' ? 'selected' : '' }}>News Tip</option>
+                                <option value="Advertising" {{ old('subject') == 'Advertising' ? 'selected' : '' }}>Advertising</option>
+                                <option value="Report a Bug" {{ old('subject') == 'Report a Bug' ? 'selected' : '' }}>Report a Bug</option>
                             </select>
+                            @error('subject')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
                             <label for="message" class="block text-sm font-medium text-slate-700 mb-2">Message</label>
                             <textarea
                                 id="message"
+                                name="message"
                                 rows="4"
-                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all resize-none"
+                                class="w-full px-4 py-3 rounded-xl border @error('message') border-red-500 @else border-slate-200 @enderror focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all resize-none"
                                 placeholder="How can we help you?"
-                            ></textarea>
+                                required
+                            >{{ old('message') }}</textarea>
+                            @error('message')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <button

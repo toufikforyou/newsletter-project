@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'TechNews Insights - Deep Dives into Engineering & Architecture')
-@section('description', 'Explore in-depth articles on React Server Components, Zero Trust Architecture, Kubernetes, and more. Written by engineers, for engineers.')
+@section('title', 'TechNews Blog - Software Engineering, AI & Cloud Computing Insights')
+@section('description', 'Expert articles on software development, AI/ML, cloud architecture, DevOps, and cybersecurity. Stay informed with weekly deep-dives written by senior engineers.')
 
 @section('content')
     <!-- Blog Hero Section -->
@@ -29,15 +29,14 @@
                 </div>
 
                 <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1]">
-                    Insights &
+                    Engineering
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">
-                        Stories
+                        Excellence
                     </span>
                 </h1>
 
                 <p class="text-lg md:text-xl text-slate-600 leading-relaxed">
-                    Discover the latest trends, tutorials, and insights from our team of experts in web development,
-                    design, and technology.
+                    In-depth technical guides, industry analysis, and career advice from engineers at top tech companies. Updated weekly.
                 </p>
             </div>
         </div>
@@ -122,12 +121,11 @@
                         <h3
                             class="text-3xl font-bold text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors"
                         >
-                            Building Modern Web Applications with Laravel and Tailwind CSS
+                            The Complete Guide to System Design Interviews in 2026
                         </h3>
 
                         <p class="text-slate-600 leading-relaxed mb-6">
-                            Discover how to leverage the power of Laravel's elegant syntax combined with Tailwind CSS's
-                            utility-first approach to create stunning, performant web applications in record time.
+                            Master scalability, load balancing, database sharding, and microservices architecture. This comprehensive guide has helped 10,000+ engineers land offers at FAANG companies.
                         </p>
 
                         <div class="flex items-center justify-between">
@@ -241,12 +239,11 @@
                         <h3
                             class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2"
                         >
-                            The Future of UI/UX Design: Trends to Watch in 2026
+                            LLMs in Production: Lessons from Scaling GPT-4 Applications
                         </h3>
 
                         <p class="text-slate-600 text-sm leading-relaxed mb-4 flex-grow line-clamp-3">
-                            Explore the emerging design trends that will shape the digital landscape in the coming year,
-                            from AI-powered interfaces to immersive experiences.
+                            Real-world strategies for deploying large language models at scale. Learn about prompt engineering, fine-tuning, and cost optimization.
                         </p>
 
                         <div class="flex items-center justify-between pt-4 border-t border-slate-100">
@@ -300,12 +297,11 @@
                         <h3
                             class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2"
                         >
-                            Optimizing Laravel Performance: Advanced Techniques
+                            Kubernetes vs Serverless: Making the Right Architecture Choice
                         </h3>
 
                         <p class="text-slate-600 text-sm leading-relaxed mb-4 flex-grow line-clamp-3">
-                            Learn how to supercharge your Laravel applications with caching strategies, database
-                            optimization, and query performance improvements.
+                            A detailed comparison of container orchestration vs serverless computing. Includes cost analysis, performance benchmarks, and use case recommendations.
                         </p>
 
                         <div class="flex items-center justify-between pt-4 border-t border-slate-100">
@@ -359,12 +355,11 @@
                         <h3
                             class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2"
                         >
-                            What's New in JavaScript ES2026: A Complete Overview
+                            Zero Trust Security: Implementation Guide for Startups
                         </h3>
 
                         <p class="text-slate-600 text-sm leading-relaxed mb-4 flex-grow line-clamp-3">
-                            Dive into the latest JavaScript features and improvements that are changing the way we write
-                            modern web applications.
+                            Protect your infrastructure from day one. Step-by-step guide to implementing zero trust architecture without enterprise-level budgets.
                         </p>
 
                         <div class="flex items-center justify-between pt-4 border-t border-slate-100">
@@ -418,12 +413,11 @@
                         <h3
                             class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2"
                         >
-                            Building RESTful APIs with Laravel: Best Practices
+                            From Senior to Staff Engineer: The Promotion Playbook
                         </h3>
 
                         <p class="text-slate-600 text-sm leading-relaxed mb-4 flex-grow line-clamp-3">
-                            Master the art of creating scalable, maintainable APIs using Laravel's powerful features and
-                            industry-standard patterns.
+                            What it really takes to reach Staff+ level. Insights from engineering leaders at Stripe, Airbnb, and Netflix on demonstrating technical leadership.
                         </p>
 
                         <div class="flex items-center justify-between pt-4 border-t border-slate-100">
@@ -477,12 +471,11 @@
                         <h3
                             class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2"
                         >
-                            Creating Accessible Web Experiences: A Designer's Guide
+                            GitOps and Platform Engineering: The Modern DevOps Stack
                         </h3>
 
                         <p class="text-slate-600 text-sm leading-relaxed mb-4 flex-grow line-clamp-3">
-                            Learn how to design inclusive digital experiences that work for everyone, regardless of
-                            their abilities or circumstances.
+                            How top engineering teams are using ArgoCD, Crossplane, and internal developer platforms to ship faster with fewer incidents.
                         </p>
 
                         <div class="flex items-center justify-between pt-4 border-t border-slate-100">
@@ -536,12 +529,11 @@
                         <h3
                             class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2"
                         >
-                            AI in Web Development: Tools That Boost Productivity
+                            Rust in Production: When to Choose It Over Go or C++
                         </h3>
 
                         <p class="text-slate-600 text-sm leading-relaxed mb-4 flex-grow line-clamp-3">
-                            Discover the AI-powered tools and assistants that are revolutionizing how developers build
-                            and maintain web applications.
+                            A pragmatic guide to Rust adoption. We analyze performance, developer experience, and ecosystem maturity to help you make the right choice.
                         </p>
 
                         <div class="flex items-center justify-between pt-4 border-t border-slate-100">
@@ -580,9 +572,9 @@
     <!-- Newsletter CTA -->
     <section class="px-6 py-16 bg-gradient-to-br from-indigo-600 to-violet-600">
         <div class="max-w-4xl mx-auto text-center space-y-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-white">Never Miss an Article</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-white">Join 50,000+ Engineers</h2>
             <p class="text-lg text-indigo-100">
-                Subscribe to our newsletter and get the latest articles delivered straight to your inbox every week.
+                Get curated insights on software architecture, AI/ML, and career growth. Free weekly newsletter trusted by engineers at Google, Meta, and Amazon.
             </p>
 
             <div class="max-w-md mx-auto pt-4">

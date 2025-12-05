@@ -13,5 +13,27 @@ class Contact extends Model
         'email',
         'subject',
         'message',
+        'status',
+        'admin_notes',
+        'replied_at',
     ];
+
+    protected $casts = [
+        'replied_at' => 'datetime',
+    ];
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function scopeOpen($query)
+    {
+        return $query->where('status', 'open');
+    }
+
+    public function scopeResolved($query)
+    {
+        return $query->where('status', 'resolved');
+    }
 }

@@ -17,3 +17,7 @@ Route::get('/blog', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+Route::get('/subscribe', function () {
+    return view('subscribe');
+})->name('subscribe');

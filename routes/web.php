@@ -6,20 +6,20 @@ use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\BlogPageController;
+use App\Http\Controllers\BlogDetailController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/blog', function () {
-    return view('blog');
-});
+Route::get('/blog', [BlogPageController::class, 'index'])->name('blog.index');
+Route::get('/blog/{blog:slug}', [BlogDetailController::class, 'show'])->name('blog.show');
 
 Route::get('/contact', function () {
     return view('contact');

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'TechNews Insights - Deep Dives into Engineering & Architecture')
+@section('description', 'Explore in-depth articles on React Server Components, Zero Trust Architecture, Kubernetes, and more. Written by engineers, for engineers.')
+
 @section('content')
     <!-- Blog Hero Section -->
     <section class="px-6 py-16 md:py-20 bg-gradient-to-br from-slate-50 to-indigo-50/30">

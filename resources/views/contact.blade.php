@@ -26,7 +26,7 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold text-slate-900">Editorial Team</h3>
-                                <p class="text-slate-600">tips@technews.com</p>
+                                <p class="text-slate-600">tips@techappupdate.com</p>
                                 <p class="text-sm text-slate-500 mt-1">For news tips and press releases.</p>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold text-slate-900">Advertising</h3>
-                                <p class="text-slate-600">ads@technews.com</p>
+                                <p class="text-slate-600">ads@techappupdate.com</p>
                                 <p class="text-sm text-slate-500 mt-1">For sponsorship and partnership inquiries.</p>
                             </div>
                         </div>

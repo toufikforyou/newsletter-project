@@ -10,6 +10,7 @@ use App\Http\Controllers\BlogPageController;
 use App\Http\Controllers\BlogDetailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SubscribeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -30,6 +31,8 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::get('/subscribe', function () {
     return view('subscribe');
 })->name('subscribe');
+
+Route::post('/subscribe', [SubscribeController::class, 'store'])->name('subscribe.store');
 
 // Admin Authentication Routes
 Route::prefix('admin')->name('admin.')->group(function () {

@@ -29,6 +29,7 @@ class NewsletterEmail extends Mailable
     {
         return new Envelope(
             subject: $this->mailSubject,
+            from: new \Illuminate\Mail\Mailables\Address(config('mail.from.address', 'hello@techappupdate.com'), $this->authorName),
         );
     }
 

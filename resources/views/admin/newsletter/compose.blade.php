@@ -10,13 +10,39 @@
     <style>
         .ql-container {
             font-size: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
         }
         
         .ql-editor {
             min-height: 200px;
             overflow-y: visible !important;
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+            color: #1f2937;
+        }
+        
+        .ql-editor p {
+            margin: 0 0 16px 0;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1f2937;
+        }
+        
+        .ql-editor h1, .ql-editor h2, .ql-editor h3 {
+            margin: 16px 0 8px 0;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .ql-editor ul, .ql-editor ol {
+            margin: 12px 0;
+            padding-left: 24px;
+        }
+        
+        .ql-editor li {
+            margin-bottom: 6px;
+            color: #1f2937;
         }
         
         .ql-toolbar {
@@ -30,37 +56,61 @@
         #preview-body {
             font-size: 16px;
             line-height: 1.8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+            color: #1f2937;
         }
         
         #preview-body p {
-            margin-bottom: 1rem;
+            margin: 0 0 16px 0;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1f2937;
         }
         
         #preview-body h1 {
             font-size: 1.875rem;
             font-weight: 700;
             margin: 1.5rem 0 0.75rem;
+            color: #111827;
         }
         
         #preview-body h2 {
             font-size: 1.5rem;
             font-weight: 600;
             margin: 1.5rem 0 0.75rem;
+            color: #111827;
         }
         
         #preview-body h3 {
             font-size: 1.25rem;
             font-weight: 600;
             margin: 1rem 0 0.5rem;
+            color: #111827;
         }
         
         #preview-body ul, #preview-body ol {
             margin: 1rem 0;
             padding-left: 2rem;
+            color: #1f2937;
         }
         
         #preview-body li {
             margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+        
+        #preview-body a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        
+        #preview-body strong {
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        #preview-body em {
+            font-style: italic;
         }
     </style>
     <div class="max-w-5xl mx-auto">
@@ -100,6 +150,14 @@
                 @error('subject')
                     <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                 @enderror
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-slate-900 mb-2">Sent By</label>
+                <div class="w-full px-4 py-2 border border-slate-200 rounded-lg bg-slate-50 text-slate-700">
+                    {{ auth('admin')->user()->name ?? auth()->user()->name ?? 'TechNews Team' }}
+                </div>
+                <p class="text-slate-500 text-xs mt-1">Emails will be sent from your name</p>
             </div>
 
             <div>
@@ -181,7 +239,7 @@
             <div class="bg-slate-50 rounded-lg p-4 sm:p-6 lg:p-8 border border-slate-200 w-full">
                 <div class="bg-white rounded-lg shadow overflow-hidden">
                     <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-4 sm:px-6 py-3 sm:py-4">
-                        <p class="text-white text-sm sm:text-base font-medium">From: TechNews Team</p>
+                        <p class="text-white text-sm sm:text-base font-medium">From: {{ auth('admin')->user()->name ?? auth()->user()->name ?? 'TechNews Team' }}</p>
                         <p class="text-blue-100 text-sm sm:text-base font-semibold" id="preview-subject">Subject: Your email subject will appear here</p>
                     </div>
                     <div class="p-4 sm:p-6 lg:p-8 text-base sm:text-lg bg-white max-h-80 sm:max-h-96 overflow-y-auto leading-relaxed" id="preview-body">

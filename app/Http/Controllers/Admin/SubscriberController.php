@@ -130,8 +130,8 @@ class SubscriberController extends Controller
                 ->with('error', 'No subscribers found to send email to.');
         }
 
-        // Queue emails for all subscribers
-        $authorName = config('mail.from.name', 'TechNews Team');
+        // Use logged-in admin user's name as author name
+        $authorName = auth('admin')->user()->name ?? auth()->user()->name ?? config('mail.from.name', 'TechNews Team');
         foreach ($subscribers as $subscriber) {
             Mail::to($subscriber->email)->queue(
                 new NewsletterEmail(

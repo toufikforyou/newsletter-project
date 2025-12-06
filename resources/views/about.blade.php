@@ -72,7 +72,7 @@
                             </div>
                             <div>
                                 <div class="text-3xl font-bold text-slate-900">50,000+</div>
-                                <div class="text-sm text-slate-600">Daily Readers</div>
+                                <div class="text-sm text-slate-600">Weekly Readers</div>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
@@ -132,7 +132,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Meet the Editors</h2>
-                <p class="mt-4 text-lg text-slate-600">The experts behind your daily briefing.</p>
+                <p class="mt-4 text-lg text-slate-600">The experts behind your weekly briefing.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Team Member 1 -->

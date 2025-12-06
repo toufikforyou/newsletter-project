@@ -7,7 +7,7 @@
                     d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z"
                 />
             </svg>
-            <span>TechNews</span>
+            <span>TechBlog</span>
         </a>
 
         <button id="toggle" class="md:hidden text-slate-600 hover:text-blue-600 focus:outline-none">
@@ -21,7 +21,7 @@
             <div class="flex flex-col md:flex-row md:items-center md:gap-10 space-y-4 md:space-y-0">
                 <a href="{{ url('/') }}" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Home</a>
                 <a href="{{ url('/about') }}" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">About</a>
-                <a href="{{ url('/blog') }}" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">News</a>
+                <a href="{{ url('/blog') }}" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Blog</a>
                 <a href="{{ url('/contact') }}" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">
                     Contact
                 </a>

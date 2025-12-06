@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'TechNews - The Daily Brief for Developers & Engineers')
+@section('title', 'TechNews - The Weekly Brief for Developers & Engineers')
 @section('description', 'Join 50,000+ developers receiving the latest insights on software engineering, system architecture, and emerging tech trends.')
 
 @section('content')
@@ -27,7 +27,7 @@
                     </h1>
                     
                     <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed max-w-lg">
-                        Join 50,000+ developers, engineers, and tech leaders who rely on TechNews for their daily industry insights.
+                        Join 50,000+ developers, engineers, and tech leaders who rely on TechNews for their weekly industry insights.
                     </p>
 
                     <!-- Subscription Form -->
@@ -167,7 +167,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Trusted by Tech Leaders</h2>
-                <p class="mt-4 text-lg text-slate-600">See why CTOs and Senior Engineers read our daily updates.</p>
+                <p class="mt-4 text-lg text-slate-600">See why CTOs and Senior Engineers read our weekly updates.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Testimonial 1 -->
@@ -234,7 +234,7 @@
                     <!-- Step 3 -->
                     <div class="bg-white p-6 text-center">
                         <div class="w-16 h-16 mx-auto bg-sky-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-sky-200">3</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3">Daily Briefing</h3>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Weekly Briefing</h3>
                         <p class="text-slate-600">We compile the most critical updates into a concise, easy-to-read format for you.</p>
                     </div>
                 </div>
@@ -250,89 +250,61 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Latest Tech Insights</h2>
                     <p class="mt-4 text-lg text-slate-600">Deep dives, tutorials, and industry news.</p>
                 </div>
-                <a href="#" class="text-blue-600 font-semibold hover:text-blue-700 flex items-center gap-2">
+                <a href="{{ route('blog.index') }}" class="text-blue-600 font-semibold hover:text-blue-700 flex items-center gap-2">
                     Read all articles
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
                         <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
                     </svg>
                 </a>
             </div>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Blog Card 1 -->
-                <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col h-full">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI Chip" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-blue-600 uppercase tracking-wider">Hardware</div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="flex items-center gap-2 text-sm text-slate-500 mb-3">
-                            <span>Dec 05, 2025</span>
-                            <span>•</span>
-                            <span>5 min read</span>
+                @forelse($latestBlogs as $blog)
+                    <a href="{{ route('blog.show', $blog->slug) }}" class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col h-full">
+                        <div class="h-48 bg-slate-200 relative overflow-hidden">
+                            @if($blog->featured_image)
+                                <img src="{{ $blog->featured_image }}" alt="{{ $blog->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            @else
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-16 h-16 text-white/30">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+                                    </svg>
+                                </div>
+                            @endif
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-blue-600 uppercase tracking-wider">
+                                {{ $blog->category ?? 'General' }}
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
-                            <a href="#">The Rise of Specialized AI Chips</a>
-                        </h3>
-                        <p class="text-slate-600 mb-4 line-clamp-3 flex-1">
-                            How custom silicon is revolutionizing machine learning performance and what it means for software optimization.
-                        </p>
-                        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
-                            <div class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">DK</div>
-                            <span class="text-sm font-medium text-slate-900">David Kim</span>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="flex items-center gap-2 text-sm text-slate-500 mb-3">
+                                <span>{{ $blog->published_at?->format('M d, Y') }}</span>
+                                <span>•</span>
+                                <span>{{ $blog->read_time ?? '—' }} min read</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+                                {{ $blog->title }}
+                            </h3>
+                            <p class="text-slate-600 mb-4 line-clamp-3 flex-1">
+                                {{ \Illuminate\Support\Str::limit($blog->excerpt ?? '', 150) }}
+                            </p>
+                            <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                                <div class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">
+                                    {{ substr($blog->author_name ?? 'A', 0, 1) }}
+                                </div>
+                                <span class="text-sm font-medium text-slate-900">{{ $blog->author_name ?? 'Admin' }}</span>
+                            </div>
                         </div>
+                    </a>
+                @empty
+                    <div class="col-span-full py-12 text-center">
+                        <p class="text-slate-500 font-medium">No published articles yet.</p>
+                        <a href="{{ route('blog.index') }}" class="text-blue-600 hover:text-blue-700 text-sm font-semibold mt-2 inline-flex items-center gap-1">View blog
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                                <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
                     </div>
-                </article>
-
-                <!-- Blog Card 2 -->
-                <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col h-full">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="React Code" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-cyan-600 uppercase tracking-wider">Frontend</div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="flex items-center gap-2 text-sm text-slate-500 mb-3">
-                            <span>Dec 02, 2025</span>
-                            <span>•</span>
-                            <span>4 min read</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
-                            <a href="#">React 19: What You Need to Know</a>
-                        </h3>
-                        <p class="text-slate-600 mb-4 line-clamp-3 flex-1">
-                            A comprehensive guide to the new features in React 19, including the new compiler and server actions.
-                        </p>
-                        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
-                            <div class="h-8 w-8 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-600 font-bold text-xs">SJ</div>
-                            <span class="text-sm font-medium text-slate-900">Sarah Jenkins</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Blog Card 3 -->
-                <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col h-full">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blockchain" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-sky-600 uppercase tracking-wider">Web3</div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="flex items-center gap-2 text-sm text-slate-500 mb-3">
-                            <span>Nov 28, 2025</span>
-                            <span>•</span>
-                            <span>6 min read</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
-                            <a href="#">Decentralized Identity Explained</a>
-                        </h3>
-                        <p class="text-slate-600 mb-4 line-clamp-3 flex-1">
-                            Understanding the protocols behind self-sovereign identity and how it will change authentication on the web.
-                        </p>
-                        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
-                            <div class="h-8 w-8 rounded-full bg-sky-100 flex items-center justify-center text-sky-600 font-bold text-xs">MP</div>
-                            <span class="text-sm font-medium text-slate-900">Marcus Patel</span>
-                        </div>
-                    </div>
-                </article>
+                @endforelse
             </div>
         </div>
     </section>
@@ -341,7 +313,7 @@
     <section class="py-20 bg-slate-900">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Stay Informed. Stay Ahead.</h2>
-            <p class="text-blue-200 text-lg mb-10 max-w-2xl mx-auto">Join the fastest-growing community of tech professionals and get your daily news briefing.</p>
+            <p class="text-blue-200 text-lg mb-10 max-w-2xl mx-auto">Join the fastest-growing community of tech professionals and get your weekly news briefing.</p>
             <form class="max-w-md mx-auto relative flex items-center bg-white/10 rounded-xl p-2 ring-1 ring-white/20 backdrop-blur-sm">
                 <input
                     type="email"

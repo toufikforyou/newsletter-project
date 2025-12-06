@@ -45,8 +45,8 @@ class ContactController extends Controller
             'reply_message' => 'required|string|min:10',
         ]);
 
-        // Send reply email
-        Mail::to($contact->email)->send(new ContactReply($contact, $validated['reply_message']));
+        // Queue reply email
+        Mail::to($contact->email)->queue(new ContactReply($contact, $validated['reply_message']));
 
         // Update contact status and notes
         $contact->update([
@@ -56,7 +56,7 @@ class ContactController extends Controller
         ]);
 
         return redirect()->route('admin.contacts.index')
-            ->with('success', 'Reply sent successfully to ' . $contact->email);
+            ->with('success', 'Reply queued for sending to ' . $contact->email);
     }
 
     public function updateStatus(Request $request, Contact $contact)

@@ -24,8 +24,8 @@ class ContactController extends Controller
 
         $contact = Contact::create($validated);
 
-        // Send email
-        Mail::to($contact->email)->send(new ContactSuccess($contact));
+        // Queue email notification
+        Mail::to($contact->email)->queue(new ContactSuccess($contact));
 
         return back()->with('success', 'Thank you for contacting us! Your Ticket ID is ' . $contact->ticket_id . '. We will get back to you shortly.');
     }

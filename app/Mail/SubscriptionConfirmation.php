@@ -22,7 +22,6 @@ class SubscriptionConfirmation extends Mailable
     {
         return new Envelope(
             subject: 'Welcome to TechNews! 🚀',
-            from: env('MAIL_FROM_ADDRESS', 'noreply@technews.local'),
         );
     }
 

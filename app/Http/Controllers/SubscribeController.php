@@ -6,6 +6,7 @@ use App\Models\Subscriber;
 use App\Mail\SubscriptionConfirmation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class SubscribeController extends Controller
 {
@@ -16,50 +17,36 @@ class SubscribeController extends Controller
                 'email' => 'required|email|max:255',
             ]);
 
-            // Check if email already subscribed
-            $existing = Subscriber::where('email', $validated['email'])->first();
+            $email = $validated['email'];
 
-            if ($existing) {
-                if ($existing->status === 'active') {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'You are already subscribed to our newsletter!',
-                    ], 200);
-                } elseif ($existing->status === 'unsubscribed') {
-                    // Reactivate if previously unsubscribed
-                    $existing->update([
-                        'status' => 'active',
-                        'subscribed_at' => now(),
-                    ]);
-                    
-                    // Try to send email, but don't fail if it errors
-                    try {
-                        Mail::to($existing->email)->send(new SubscriptionConfirmation($existing));
-                    } catch (\Exception $e) {
-                        \Log::error('Mail send failed: ' . $e->getMessage());
-                    }
+            // Use firstOrCreate to reduce queries and improve performance
+            $subscriber = Subscriber::firstOrCreate(
+                ['email' => $email],
+                [
+                    'name' => null,
+                    'status' => 'active',
+                    'subscribed_at' => now(),
+                ]
+            );
 
-                    return response()->json([
-                        'success' => true,
-                        'message' => 'Welcome back! Confirmation email sent.',
-                    ], 200);
-                }
+            // If subscriber already exists and is active, return already subscribed message
+            if (!$subscriber->wasRecentlyCreated && $subscriber->status === 'active') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'You are already subscribed to our newsletter!',
+                ], 200);
             }
 
-            // Create new subscriber
-            $subscriber = Subscriber::create([
-                'email' => $validated['email'],
-                'name' => null,
-                'status' => 'active',
-                'subscribed_at' => now(),
-            ]);
-
-            // Try to send email, but don't fail if it errors
-            try {
-                Mail::to($subscriber->email)->send(new SubscriptionConfirmation($subscriber));
-            } catch (\Exception $e) {
-                \Log::error('Mail send failed: ' . $e->getMessage());
+            // If reactivating an unsubscribed user
+            if (!$subscriber->wasRecentlyCreated && $subscriber->status === 'unsubscribed') {
+                $subscriber->update([
+                    'status' => 'active',
+                    'subscribed_at' => now(),
+                ]);
             }
+
+            // Queue the email asynchronously - returns immediately
+            Mail::to($subscriber->email)->queue(new SubscriptionConfirmation($subscriber));
 
             return response()->json([
                 'success' => true,

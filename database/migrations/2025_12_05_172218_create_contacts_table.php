@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('email');
             $table->string('subject');
             $table->text('message');
+            $table->enum('status', ['open', 'in_progress', 'resolved', 'closed'])->default('open');
+            $table->text('admin_notes')->nullable();
+            $table->timestamp('replied_at')->nullable();
             $table->timestamps();
         });
     }

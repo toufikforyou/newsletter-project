@@ -50,7 +50,7 @@
                             <div class="font-medium text-slate-900">{{ $subscriber->email }}</div>
                         </td>
                         <td class="px-6 py-4 text-sm text-slate-600">
-                            {{ $subscriber->name ?? '<span class="text-slate-400 italic">Not provided</span>' }}
+                            {{ $subscriber->name ? $subscriber->name : 'N/A' }}
                         </td>
                         <td class="px-6 py-4 text-sm">
                             <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium"
@@ -75,11 +75,11 @@
                             <a href="{{ route('admin.subscribers.edit', $subscriber) }}" class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors text-xs font-medium">
                                 <span class="material-icons text-sm">edit</span>
                             </a>
-                            <form method="POST" action="{{ route('admin.subscribers.destroy', $subscriber) }}" class="inline" onsubmit="return confirm('Are you sure? This cannot be undone.')">
+                            <form method="POST" action="{{ route('admin.subscribers.destroy', $subscriber) }}" class="inline" onsubmit="return confirm('{{ $subscriber->status === 'bounced' ? 'Activate this subscriber?' : 'Mark this subscriber as bounced?' }}')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="inline-flex items-center px-3 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors text-xs font-medium">
-                                    <span class="material-icons text-sm">delete</span>
+                                <button type="submit" class="inline-flex items-center px-3 py-1 {{ $subscriber->status === 'bounced' ? 'bg-green-100 text-green-700 hover:bg-green-200' : 'bg-red-100 text-red-700 hover:bg-red-200' }} rounded transition-colors text-xs font-medium">
+                                    <span class="material-icons text-sm">{{ $subscriber->status === 'bounced' ? 'check_circle' : 'block' }}</span>
                                 </button>
                             </form>
                         </td>

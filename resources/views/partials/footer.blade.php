@@ -56,9 +56,17 @@
             <div>
                 <h3 class="text-white font-bold mb-6">Stay Updated</h3>
                 <p class="text-slate-400 mb-4 text-sm">Join 50,000+ developers receiving our weekly tech briefing.</p>
-                <form class="space-y-3">
-                    <input type="email" placeholder="Enter your email" class="w-full px-4 py-2.5 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all placeholder-slate-500">
-                    <button type="submit" class="w-full px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold transition-colors shadow-lg shadow-blue-900/20">Subscribe</button>
+                <form id="footerSubForm" class="space-y-3">
+                    @csrf
+                    <input 
+                        type="email" 
+                        name="email"
+                        placeholder="Enter your email" 
+                        class="w-full px-4 py-2.5 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all placeholder-slate-500"
+                        required
+                    >
+                    <button type="submit" class="w-full px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold transition-colors shadow-lg shadow-blue-900/20" id="footerSubBtn">Subscribe</button>
+                    <div id="footerSubMsg" class="hidden text-sm p-2 rounded"></div>
                 </form>
             </div>
         </div>
@@ -73,3 +81,67 @@
         </div>
     </div>
 </footer>
+
+<script>
+    const footerForm = document.getElementById('footerSubForm');
+    const footerBtn = document.getElementById('footerSubBtn');
+    const footerMsg = document.getElementById('footerSubMsg');
+
+    if (footerForm) {
+        footerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = footerForm.querySelector('input[name="email"]').value;
+            const csrfToken = footerForm.querySelector('input[name="_token"]').value;
+
+            footerBtn.disabled = true;
+            footerBtn.textContent = 'Subscribing...';
+            footerMsg.classList.add('hidden');
+
+            try {
+                const response = await fetch('{{ route("subscribe.store") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken,
+                    },
+                    body: JSON.stringify({ email }),
+                });
+
+                const data = await response.json();
+                footerMsg.classList.remove('hidden');
+                footerMsg.textContent = data.message;
+
+                if (data.success) {
+                    footerMsg.classList.add('text-green-100', 'bg-green-600/30');
+                    footerMsg.classList.remove('text-amber-100', 'bg-amber-600/30', 'text-red-100', 'bg-red-600/30');
+                    footerForm.reset();
+                    setTimeout(() => {
+                        footerBtn.textContent = 'Subscribe';
+                        footerBtn.disabled = false;
+                    }, 2000);
+                    setTimeout(() => {
+                        footerMsg.classList.add('hidden');
+                    }, 5000);
+                } else {
+                    footerMsg.classList.add('text-amber-100', 'bg-amber-600/30');
+                    footerMsg.classList.remove('text-green-100', 'bg-green-600/30', 'text-red-100', 'bg-red-600/30');
+                    footerBtn.textContent = 'Subscribe';
+                    footerBtn.disabled = false;
+                    setTimeout(() => {
+                        footerMsg.classList.add('hidden');
+                    }, 5000);
+                }
+            } catch (error) {
+                footerMsg.classList.remove('hidden');
+                footerMsg.classList.add('text-red-100', 'bg-red-600/30');
+                footerMsg.classList.remove('text-green-100', 'bg-green-600/30', 'text-amber-100', 'bg-amber-600/30');
+                footerMsg.textContent = 'An error occurred. Please try again.';
+                footerBtn.textContent = 'Subscribe';
+                footerBtn.disabled = false;
+                setTimeout(() => {
+                    footerMsg.classList.add('hidden');
+                }, 5000);
+            }
+        });
+    }
+</script>

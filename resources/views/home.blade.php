@@ -31,20 +31,25 @@
                     </p>
 
                     <!-- Subscription Form -->
-                    <form class="flex gap-3 max-w-md mb-8">
+                    <form id="heroSubForm" class="flex gap-3 max-w-md mb-8">
+                        @csrf
                         <input
                             type="email"
+                            name="email"
                             placeholder="Enter your email address"
                             class="flex-1 bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm backdrop-blur-sm"
                             required
                         />
                         <button
                             type="submit"
+                            id="heroSubBtn"
                             class="bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 px-6 rounded-lg transition-colors shadow-lg shadow-blue-500/20 whitespace-nowrap"
                         >
                             Subscribe Free
                         </button>
                     </form>
+
+                    <div id="heroSubMsg" class="hidden text-sm p-3 rounded-lg mb-4"></div>
 
                     <!-- Trust Text -->
                     <div class="flex items-center gap-3 text-sm text-slate-400">
@@ -314,20 +319,150 @@
         <div class="max-w-4xl mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Stay Informed. Stay Ahead.</h2>
             <p class="text-blue-200 text-lg mb-10 max-w-2xl mx-auto">Join the fastest-growing community of tech professionals and get your weekly news briefing.</p>
-            <form class="max-w-md mx-auto relative flex items-center bg-white/10 rounded-xl p-2 ring-1 ring-white/20 backdrop-blur-sm">
+            <form id="bottomCtaForm" class="max-w-md mx-auto relative flex items-center bg-white/10 rounded-xl p-2 ring-1 ring-white/20 backdrop-blur-sm">
+                @csrf
                 <input
                     type="email"
+                    name="email"
                     placeholder="Enter your email address"
                     class="w-full bg-transparent border-0 focus:outline-none rounded-lg px-4 text-white placeholder:text-slate-400 h-12"
                     required
                 />
                 <button
                     type="submit"
+                    id="bottomCtaBtn"
                     class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 whitespace-nowrap"
                 >
                     Subscribe Now
                 </button>
             </form>
+            <div id="bottomCtaMsg" class="hidden text-sm p-3 rounded-lg mt-4 max-w-md mx-auto"></div>
         </div>
     </section>
+
+    <script>
+        const heroForm = document.getElementById('heroSubForm');
+        const heroBtn = document.getElementById('heroSubBtn');
+        const heroMsg = document.getElementById('heroSubMsg');
+
+        if (heroForm) {
+            heroForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = heroForm.querySelector('input[name="email"]').value;
+                const csrfToken = heroForm.querySelector('input[name="_token"]').value;
+
+                heroBtn.disabled = true;
+                heroBtn.textContent = 'Subscribing...';
+                heroMsg.classList.add('hidden');
+
+                try {
+                    const response = await fetch('{{ route("subscribe.store") }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken,
+                        },
+                        body: JSON.stringify({ email }),
+                    });
+
+                    const data = await response.json();
+                    heroMsg.classList.remove('hidden');
+                    heroMsg.textContent = data.message;
+
+                    if (data.success) {
+                        heroMsg.classList.add('text-green-200', 'bg-green-600/30');
+                        heroMsg.classList.remove('text-amber-200', 'bg-amber-600/30', 'text-red-200', 'bg-red-600/30');
+                        heroForm.reset();
+                        setTimeout(() => {
+                            heroBtn.textContent = 'Subscribe Free';
+                            heroBtn.disabled = false;
+                        }, 2000);
+                        setTimeout(() => {
+                            heroMsg.classList.add('hidden');
+                        }, 5000);
+                    } else {
+                        heroMsg.classList.add('text-amber-200', 'bg-amber-600/30');
+                        heroMsg.classList.remove('text-green-200', 'bg-green-600/30', 'text-red-200', 'bg-red-600/30');
+                        heroBtn.textContent = 'Subscribe Free';
+                        heroBtn.disabled = false;
+                        setTimeout(() => {
+                            heroMsg.classList.add('hidden');
+                        }, 5000);
+                    }
+                } catch (error) {
+                    heroMsg.classList.remove('hidden');
+                    heroMsg.classList.add('text-red-200', 'bg-red-600/30');
+                    heroMsg.classList.remove('text-green-200', 'bg-green-600/30', 'text-amber-200', 'bg-amber-600/30');
+                    heroMsg.textContent = 'An error occurred. Please try again.';
+                    heroBtn.textContent = 'Subscribe Free';
+                    heroBtn.disabled = false;
+                    setTimeout(() => {
+                        heroMsg.classList.add('hidden');
+                    }, 5000);
+                }
+            });
+        }
+
+        const bottomCtaForm = document.getElementById('bottomCtaForm');
+        const bottomCtaBtn = document.getElementById('bottomCtaBtn');
+        const bottomCtaMsg = document.getElementById('bottomCtaMsg');
+
+        if (bottomCtaForm) {
+            bottomCtaForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = bottomCtaForm.querySelector('input[name="email"]').value;
+                const csrfToken = bottomCtaForm.querySelector('input[name="_token"]').value;
+
+                bottomCtaBtn.disabled = true;
+                bottomCtaBtn.textContent = 'Subscribing...';
+                bottomCtaMsg.classList.add('hidden');
+
+                try {
+                    const response = await fetch('{{ route("subscribe.store") }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken,
+                        },
+                        body: JSON.stringify({ email }),
+                    });
+
+                    const data = await response.json();
+                    bottomCtaMsg.classList.remove('hidden');
+                    bottomCtaMsg.textContent = data.message;
+
+                    if (data.success) {
+                        bottomCtaMsg.classList.add('text-green-200', 'bg-green-600/30');
+                        bottomCtaMsg.classList.remove('text-amber-200', 'bg-amber-600/30', 'text-red-200', 'bg-red-600/30');
+                        bottomCtaForm.reset();
+                        setTimeout(() => {
+                            bottomCtaBtn.textContent = 'Subscribe Now';
+                            bottomCtaBtn.disabled = false;
+                        }, 2000);
+                        setTimeout(() => {
+                            bottomCtaMsg.classList.add('hidden');
+                        }, 5000);
+                    } else {
+                        bottomCtaMsg.classList.add('text-amber-200', 'bg-amber-600/30');
+                        bottomCtaMsg.classList.remove('text-green-200', 'bg-green-600/30', 'text-red-200', 'bg-red-600/30');
+                        bottomCtaBtn.textContent = 'Subscribe Now';
+                        bottomCtaBtn.disabled = false;
+                        setTimeout(() => {
+                            bottomCtaMsg.classList.add('hidden');
+                        }, 5000);
+                    }
+                } catch (error) {
+                    bottomCtaMsg.classList.remove('hidden');
+                    bottomCtaMsg.classList.add('text-red-200', 'bg-red-600/30');
+                    bottomCtaMsg.classList.remove('text-green-200', 'bg-green-600/30', 'text-amber-200', 'bg-amber-600/30');
+                    bottomCtaMsg.textContent = 'An error occurred. Please try again.';
+                    bottomCtaBtn.textContent = 'Subscribe Now';
+                    bottomCtaBtn.disabled = false;
+                    setTimeout(() => {
+                        bottomCtaMsg.classList.add('hidden');
+                    }, 5000);
+                }
+            });
+        }
+    </script>
 @endsection

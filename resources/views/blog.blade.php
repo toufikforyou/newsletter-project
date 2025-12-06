@@ -156,41 +156,4 @@
             @endif
         </div>
     </section>
-
-    <!-- Newsletter CTA -->
-    <section class="px-6 py-16 bg-gradient-to-br from-indigo-600 to-violet-600">
-        <div class="max-w-4xl mx-auto text-center space-y-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-white">Join 50,000+ Engineers</h2>
-            <p class="text-lg text-indigo-100">
-                Get curated insights on software architecture, AI/ML, and career growth. Free weekly newsletter trusted by engineers at Google, Meta, and Amazon.
-            </p>
-
-            <div class="max-w-md mx-auto pt-4">
-                <form class="relative flex items-center bg-white rounded-xl p-2 shadow-xl">
-                    <div class="px-2 text-slate-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                            <path
-                                d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z"
-                            />
-                            <path
-                                d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z"
-                            />
-                        </svg>
-                    </div>
-                    <input
-                        type="email"
-                        placeholder="Enter your email"
-                        class="w-full bg-transparent border-0 focus:outline-none rounded-lg px-2 text-slate-900 placeholder:text-slate-400 h-12"
-                        required
-                    />
-                    <button
-                        type="submit"
-                        class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg whitespace-nowrap"
-                    >
-                        Subscribe
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
 @endsection

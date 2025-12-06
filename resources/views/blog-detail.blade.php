@@ -96,7 +96,7 @@
 
                 <div class="grid md:grid-cols-3 gap-8">
                     @foreach($relatedBlogs as $related)
-                        <article class="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-indigo-200 transition-all duration-300 hover:shadow-lg flex flex-col">
+                        <a href="{{ route('blog.show', $related->slug) }}" class="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-indigo-200 transition-all duration-300 hover:shadow-lg flex flex-col">
                             <div class="relative h-48 bg-gradient-to-br from-violet-500 to-purple-600 overflow-hidden">
                                 @if($related->featured_image)
                                     <img src="{{ $related->featured_image }}" alt="{{ $related->title }}" class="w-full h-full object-cover">
@@ -130,15 +130,15 @@
                                 </p>
 
                                 <div class="pt-4 border-t border-slate-100">
-                                    <a href="{{ route('blog.show', $related->slug) }}" class="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium text-sm">
+                                    <span class="inline-flex items-center gap-2 text-indigo-600 group-hover:text-indigo-700 font-medium text-sm">
                                         Read More
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                                         </svg>
-                                    </a>
+                                    </span>
                                 </div>
                             </div>
-                        </article>
+                        </a>
                     @endforeach
                 </div>
             </div>
@@ -146,15 +146,16 @@
     @endif
 
     <!-- CTA Section -->
-    <section class="px-6 py-16 bg-gradient-to-br from-indigo-600 to-violet-600">
+    <section class="px-6 py-16 bg-slate-900">
         <div class="max-w-4xl mx-auto text-center space-y-6">
             <h2 class="text-3xl md:text-4xl font-bold text-white">Get More Insights Like This</h2>
-            <p class="text-lg text-indigo-100">
+            <p class="text-lg text-blue-200">
                 Subscribe to our weekly newsletter for curated tech insights, industry analysis, and career growth tips.
             </p>
 
             <div class="max-w-md mx-auto pt-4">
-                <form class="relative flex items-center bg-white rounded-xl p-2 shadow-xl">
+                <form id="blogDetailSubForm" class="relative flex items-center bg-white/10 rounded-xl p-2 ring-1 ring-white/20 backdrop-blur-sm">
+                    @csrf
                     <div class="px-2 text-slate-400">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                             <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
@@ -163,18 +164,85 @@
                     </div>
                     <input
                         type="email"
+                        name="email"
                         placeholder="Enter your email"
-                        class="w-full bg-transparent border-0 focus:outline-none rounded-lg px-2 text-slate-900 placeholder:text-slate-400 h-12"
+                        class="w-full bg-transparent border-0 focus:outline-none rounded-lg px-2 text-white placeholder:text-slate-400 h-12"
                         required
                     />
                     <button
                         type="submit"
-                        class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg whitespace-nowrap"
+                        id="blogDetailSubBtn"
+                        class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 whitespace-nowrap"
                     >
                         Subscribe
                     </button>
                 </form>
+                <div id="blogDetailSubMsg" class="hidden text-sm p-3 rounded-lg mt-3"></div>
             </div>
         </div>
     </section>
+
+    <script>
+        const blogDetailForm = document.getElementById('blogDetailSubForm');
+        const blogDetailBtn = document.getElementById('blogDetailSubBtn');
+        const blogDetailMsg = document.getElementById('blogDetailSubMsg');
+
+        if (blogDetailForm) {
+            blogDetailForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = blogDetailForm.querySelector('input[name="email"]').value;
+                const csrfToken = blogDetailForm.querySelector('input[name="_token"]').value;
+
+                blogDetailBtn.disabled = true;
+                blogDetailBtn.textContent = 'Subscribing...';
+                blogDetailMsg.classList.add('hidden');
+
+                try {
+                    const response = await fetch('{{ route("subscribe.store") }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken,
+                        },
+                        body: JSON.stringify({ email }),
+                    });
+
+                    const data = await response.json();
+                    blogDetailMsg.classList.remove('hidden');
+                    blogDetailMsg.textContent = data.message;
+
+                    if (data.success) {
+                        blogDetailMsg.classList.add('text-green-100', 'bg-green-600/30');
+                        blogDetailMsg.classList.remove('text-amber-100', 'bg-amber-600/30', 'text-red-100', 'bg-red-600/30');
+                        blogDetailForm.reset();
+                        setTimeout(() => {
+                            blogDetailBtn.textContent = 'Subscribe';
+                            blogDetailBtn.disabled = false;
+                        }, 2000);
+                        setTimeout(() => {
+                            blogDetailMsg.classList.add('hidden');
+                        }, 5000);
+                    } else {
+                        blogDetailMsg.classList.add('text-amber-100', 'bg-amber-600/30');
+                        blogDetailMsg.classList.remove('text-green-100', 'bg-green-600/30', 'text-red-100', 'bg-red-600/30');
+                        blogDetailBtn.textContent = 'Subscribe';
+                        blogDetailBtn.disabled = false;
+                        setTimeout(() => {
+                            blogDetailMsg.classList.add('hidden');
+                        }, 5000);
+                    }
+                } catch (error) {
+                    blogDetailMsg.classList.remove('hidden');
+                    blogDetailMsg.classList.add('text-red-100', 'bg-red-600/30');
+                    blogDetailMsg.classList.remove('text-green-100', 'bg-green-600/30', 'text-amber-100', 'bg-amber-600/30');
+                    blogDetailMsg.textContent = 'An error occurred. Please try again.';
+                    blogDetailBtn.textContent = 'Subscribe';
+                    blogDetailBtn.disabled = false;
+                    setTimeout(() => {
+                        blogDetailMsg.classList.add('hidden');
+                    }, 5000);
+                }
+            });
+        }
+    </script>
 @endsection

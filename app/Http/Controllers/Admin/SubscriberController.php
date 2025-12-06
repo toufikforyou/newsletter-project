@@ -78,9 +78,20 @@ class SubscriberController extends Controller
 
     public function destroy(Subscriber $subscriber)
     {
-        $subscriber->delete();
+        // Toggle between bounced and active status
+        if ($subscriber->status === 'bounced') {
+            $subscriber->update([
+                'status' => 'active',
+            ]);
+            $message = 'Subscriber activated.';
+        } else {
+            $subscriber->update([
+                'status' => 'bounced',
+            ]);
+            $message = 'Subscriber marked as bounced.';
+        }
 
         return redirect()->route('admin.subscribers.index')
-            ->with('success', 'Subscriber deleted successfully.');
+            ->with('success', $message);
     }
 }

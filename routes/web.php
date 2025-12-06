@@ -57,6 +57,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         
         // Subscribers
         Route::resource('subscribers', SubscriberController::class);
+        Route::get('newsletter/compose', [SubscriberController::class, 'composeNewsletter'])->name('newsletter.compose');
+        Route::post('newsletter/send', [SubscriberController::class, 'sendNewsletter'])->name('newsletter.send');
         
         // Blogs
         Route::resource('blogs', BlogController::class);

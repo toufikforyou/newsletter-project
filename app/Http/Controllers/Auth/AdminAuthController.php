@@ -52,8 +52,8 @@ class AdminAuthController extends Controller
             ]
         );
 
-        // Send OTP via email
-        Mail::to($request->email)->send(new AdminOtpMail($otp));
+        // Queue OTP email for async delivery
+        Mail::to($request->email)->queue(new AdminOtpMail($otp));
 
         return view('auth.admin-verify-otp', ['email' => $request->email])
             ->with('success', 'OTP has been sent to your email. Please check your inbox.');

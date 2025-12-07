@@ -10,13 +10,18 @@
 <body class="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 min-h-screen flex items-center justify-center">
     <div class="w-full max-w-md">
         <div class="bg-white rounded-2xl shadow-2xl p-8">
+            @php
+                $allowedDomains = array_values(array_filter(array_map('trim', explode(',', env('ADMIN_ALLOWED_DOMAINS', 'techappupdate.com')))));
+                $allowedDomainsLabel = implode(', ', $allowedDomains);
+                $exampleEmail = 'admin@' . ($allowedDomains[0] ?? 'yourdomain.com');
+            @endphp
             <!-- Logo/Header -->
             <div class="text-center mb-8">
                 <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-4">
                     <span class="material-icons text-white text-3xl">admin_panel_settings</span>
                 </div>
                 <h1 class="text-3xl font-bold text-slate-900">Admin Registration</h1>
-                <p class="text-slate-600 mt-2">Enter your authorized email to continue</p>
+                <p class="text-slate-600 mt-2">Use an email from an authorized domain to continue.</p>
             </div>
 
             @if (session('error'))
@@ -41,13 +46,13 @@
                     <label for="email" class="block text-sm font-semibold text-slate-900 mb-2">Email Address</label>
                     <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus
                         class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all @error('email') border-red-500 @enderror"
-                        placeholder="hello@techappupdate.com">
+                        placeholder="{{ $exampleEmail }}">
                     @error('email')
                         <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                     @enderror
                     <p class="text-xs text-slate-500 mt-2">
                         <span class="material-icons text-xs align-middle">info</span>
-                        Only hello@techappupdate.com is authorized
+                        Allowed domains: {{ $allowedDomainsLabel }}
                     </p>
                 </div>
 

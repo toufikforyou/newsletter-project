@@ -80,6 +80,13 @@ class SubscriberController extends Controller
 
     public function destroy(Subscriber $subscriber)
     {
+        // If already unsubscribed, fully delete the record
+        if ($subscriber->status === 'unsubscribed') {
+            $subscriber->delete();
+            return redirect()->route('admin.subscribers.index')
+                ->with('success', 'Unsubscribed email deleted.');
+        }
+
         // Toggle between bounced and active status
         if ($subscriber->status === 'bounced') {
             $subscriber->update([

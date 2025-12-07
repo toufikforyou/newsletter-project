@@ -58,17 +58,9 @@
                     </a>
                     
                     <a href="{{ url('/') }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors">
-                        <span class="material-icons">home</span>
+                        <span class="material-icons">logout</span>
                         <span>View Site</span>
                     </a>
-
-                    <form method="POST" action="{{ route('admin.logout') }}">
-                        @csrf
-                        <button type="submit" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors text-left">
-                            <span class="material-icons">logout</span>
-                            <span>Logout</span>
-                        </button>
-                    </form>
                 </div>
             </nav>
         </aside>

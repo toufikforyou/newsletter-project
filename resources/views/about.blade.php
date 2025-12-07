@@ -134,50 +134,65 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Meet the Editors</h2>
                 <p class="mt-4 text-lg text-slate-600">The experts behind your weekly briefing.</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-4 gap-8">
                 <!-- Team Member 1 -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
                     <div class="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-4 overflow-hidden">
                         <img
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                            alt="Team Member"
+                            src="toufik.jpg"
+                            alt="Founder & CEO"
                             class="w-full h-full object-cover"
                         />
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900">Alex Morgan</h3>
-                    <p class="text-blue-600 font-medium mb-2">Editor-in-Chief</p>
+                    <h3 class="text-xl font-bold text-slate-900">MH TOUFIK</h3>
+                    <p class="text-blue-600 font-medium mb-2">Founder & CEO</p>
                     <p class="text-slate-600 text-sm">
-                        Former Senior Engineer at Google. Passionate about distributed systems and AI.
+                        Former Senior Engineer at Falahon technology. Passionate about distributed systems and AI.
                     </p>
                 </div>
                 <!-- Team Member 2 -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
                     <div class="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-4 overflow-hidden">
                         <img
-                            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            src="mobarak.jpg"
                             alt="Team Member"
                             class="w-full h-full object-cover"
                         />
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900">Sarah Chen</h3>
+                    <h3 class="text-xl font-bold text-slate-900">Mobarak Hossain</h3>
                     <p class="text-cyan-600 font-medium mb-2">Senior Tech Writer</p>
                     <p class="text-slate-600 text-sm">
-                        Specializes in frontend frameworks and web performance. 10+ years in tech journalism.
+                        Specializes in frontend frameworks and web performance. 2+ years in tech writing.
                     </p>
                 </div>
                 <!-- Team Member 3 -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
                     <div class="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-4 overflow-hidden">
                         <img
-                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            src="shuvo.jpg"
                             alt="Team Member"
                             class="w-full h-full object-cover"
                         />
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900">James Wilson</h3>
-                    <p class="text-sky-600 font-medium mb-2">Hardware Analyst</p>
+                    <h3 class="text-xl font-bold text-slate-900">Ashraful Islam Shuvo</h3>
+                    <p class="text-sky-600 font-medium mb-2">Content Writer</p>
                     <p class="text-slate-600 text-sm">
-                        Expert in semiconductor trends and emerging hardware technologies.
+                        Focused on cloud computing and DevOps trends. Dedicated to clear and concise tech communication.
+                    </p>
+                </div>
+                <!-- Team Member 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
+                    <div class="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-4 overflow-hidden">
+                        <img
+                            src="jubayer.jpg"
+                            alt="Team Member"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Jubayer Ahmed</h3>
+                    <p class="text-sky-600 font-medium mb-2">Editor</p>
+                    <p class="text-slate-600 text-sm">
+                        Experienced in cybersecurity and data privacy. Committed to delivering trustworthy tech news.
                     </p>
                 </div>
             </div>

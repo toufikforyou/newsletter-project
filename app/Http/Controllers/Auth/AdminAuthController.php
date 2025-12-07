@@ -26,9 +26,12 @@ class AdminAuthController extends Controller
             'email' => 'required|email',
         ]);
 
-        // Only allow hello@techappupdate.com
-        if ($request->email !== 'hello@techappupdate.com') {
-            return back()->withErrors(['email' => 'This email is not authorized for admin registration.']);
+        $allowedDomains = array_filter(array_map('trim', explode(',', strtolower(env('ADMIN_ALLOWED_DOMAINS', 'techappupdate.com')))));
+        $emailDomain = strtolower(substr(strrchr($request->email, '@'), 1));
+
+        // Allow any email belonging to the authorized domain(s)
+        if (!in_array($emailDomain, $allowedDomains, true)) {
+            return back()->withErrors(['email' => 'This email domain is not authorized for admin registration.']);
         }
 
         // Check if admin already exists and is verified
@@ -49,8 +52,8 @@ class AdminAuthController extends Controller
             ]
         );
 
-        // Send OTP via email
-        Mail::to($request->email)->send(new AdminOtpMail($otp));
+        // Queue OTP email for async delivery
+        Mail::to($request->email)->queue(new AdminOtpMail($otp));
 
         return view('auth.admin-verify-otp', ['email' => $request->email])
             ->with('success', 'OTP has been sent to your email. Please check your inbox.');

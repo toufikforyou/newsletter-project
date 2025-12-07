@@ -34,9 +34,8 @@ Route::get('/subscribe', function () {
 
 Route::post('/subscribe', [SubscribeController::class, 'store'])->name('subscribe.store');
 
-// Admin Authentication Routes
+// Admin Authentication Routes (login/register stay under /admin)
 Route::prefix('admin')->name('admin.')->group(function () {
-    // Guest routes
     Route::middleware('guest:admin')->group(function () {
         Route::get('/register', [AdminAuthController::class, 'showRegister'])->name('register');
         Route::post('/register', [AdminAuthController::class, 'register'])->name('register.submit');
@@ -44,30 +43,33 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
         Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');
     });
+});
 
-    // Authenticated routes
-    Route::middleware('admin.auth')->group(function () {
-        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
-        
-        Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-        
-        // Profile
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        
-        // Subscribers
-        Route::resource('subscribers', SubscriberController::class);
-        Route::get('newsletter/compose', [SubscriberController::class, 'composeNewsletter'])->name('newsletter.compose');
-        Route::post('newsletter/send', [SubscriberController::class, 'sendNewsletter'])->name('newsletter.send');
-        
-        // Blogs
-        Route::resource('blogs', BlogController::class);
-        
-        // Contacts/Issues
-        Route::get('contacts', [AdminContactController::class, 'index'])->name('contacts.index');
-        Route::get('contacts/{contact:ticket_id}', [AdminContactController::class, 'show'])->name('contacts.show');
-        Route::post('contacts/{contact:ticket_id}/reply', [AdminContactController::class, 'reply'])->name('contacts.reply');
-        Route::patch('contacts/{contact:ticket_id}/status', [AdminContactController::class, 'updateStatus'])->name('contacts.status');
-        Route::delete('contacts/{contact:ticket_id}', [AdminContactController::class, 'destroy'])->name('contacts.destroy');
-    });
+// Redirect legacy /admin root to the new dashboard path
+Route::redirect('/admin', '/dashboard');
+
+// Authenticated admin dashboard and resources now live under /dashboard
+Route::middleware('admin.auth')->prefix('dashboard')->name('admin.')->group(function () {
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+
+    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    // Subscribers
+    Route::resource('subscribers', SubscriberController::class);
+    Route::get('newsletter/compose', [SubscriberController::class, 'composeNewsletter'])->name('newsletter.compose');
+    Route::post('newsletter/send', [SubscriberController::class, 'sendNewsletter'])->name('newsletter.send');
+
+    // Blogs
+    Route::resource('blogs', BlogController::class);
+
+    // Contacts/Issues
+    Route::get('contacts', [AdminContactController::class, 'index'])->name('contacts.index');
+    Route::get('contacts/{contact:ticket_id}', [AdminContactController::class, 'show'])->name('contacts.show');
+    Route::post('contacts/{contact:ticket_id}/reply', [AdminContactController::class, 'reply'])->name('contacts.reply');
+    Route::patch('contacts/{contact:ticket_id}/status', [AdminContactController::class, 'updateStatus'])->name('contacts.status');
+    Route::delete('contacts/{contact:ticket_id}', [AdminContactController::class, 'destroy'])->name('contacts.destroy');
 });

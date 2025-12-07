@@ -105,7 +105,7 @@
                             <div class="relative col-span-2 flex justify-center -mt-8">
                                 <div class="relative">
                                     <div class="w-56 h-56 bg-slate-800 border-2 border-sky-500/30 rounded-full overflow-hidden relative shadow-2xl shadow-sky-900/20">
-                                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="CTO" class="w-full h-full object-cover opacity-90 hover:scale-110 transition-transform duration-700">
+                                        <img src="toufik.jpg" alt="CTO" class="w-full h-full object-cover opacity-90 hover:scale-110 transition-transform duration-700">
                                     </div>
                                     <!-- Speech Bubble -->
                                     <div class="absolute -bottom-4 -right-4 bg-slate-800 border border-slate-700 rounded-2xl rounded-tl-none p-4 shadow-xl">

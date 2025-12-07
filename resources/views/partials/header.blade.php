@@ -1,4 +1,12 @@
 <header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+    @php
+        $linkBase = 'text-sm font-medium transition-colors';
+        $defaultText = 'text-slate-600 hover:text-blue-600';
+        $activeText = 'text-blue-600';
+        $buttonBase = 'block bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 px-6 rounded-lg shadow-sm hover:shadow-md transition-all text-center md:ml-6';
+        $buttonActive = 'ring-2 ring-blue-200';
+    @endphp
+
     <nav class="w-full py-4 px-6 md:px-12 flex justify-between items-center max-w-7xl mx-auto relative">
         <a href="{{ url('/') }}" class="text-2xl font-bold tracking-tighter text-blue-600 flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
@@ -19,17 +27,17 @@
             class="hidden w-full md:w-auto md:flex md:items-center md:gap-10 absolute md:static left-0 top-full z-[10] bg-white md:bg-transparent border-t md:border-none border-slate-100 shadow-lg md:shadow-none px-6 py-6 md:p-0 space-y-4 md:space-y-0"
         >
             <div class="flex flex-col md:flex-row md:items-center md:gap-10 space-y-4 md:space-y-0">
-                <a href="{{ url('/') }}" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Home</a>
-                <a href="{{ url('/about') }}" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">About</a>
-                <a href="{{ url('/blog') }}" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Blog</a>
-                <a href="{{ url('/contact') }}" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">
+                <a href="{{ url('/') }}" class="{{ $linkBase }} {{ request()->routeIs('home') ? $activeText : $defaultText }}">Home</a>
+                <a href="{{ url('/about') }}" class="{{ $linkBase }} {{ request()->is('about') ? $activeText : $defaultText }}">About</a>
+                <a href="{{ url('/blog') }}" class="{{ $linkBase }} {{ request()->routeIs('blog.*') ? $activeText : $defaultText }}">Blog</a>
+                <a href="{{ url('/contact') }}" class="{{ $linkBase }} {{ request()->routeIs('contact') ? $activeText : $defaultText }}">
                     Contact
                 </a>
             </div>
 
             <a
                 href="{{ route('subscribe') }}"
-                class="block bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 px-6 rounded-lg shadow-sm hover:shadow-md transition-all text-center md:ml-6"
+                class="{{ $buttonBase }} {{ request()->routeIs('subscribe') ? $buttonActive : '' }}"
             >
                 Subscribe
             </a>

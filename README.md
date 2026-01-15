@@ -17,9 +17,7 @@ Perfect for tech blogs, news sites, content creators, and businesses looking to 
 
 ---
 
-## 📸 Screenshots
-
-### 🌐 Public Website
+### 🌐 Public Website Screenshots
 
 <div align="center">
 
@@ -63,9 +61,7 @@ Perfect for tech blogs, news sites, content creators, and businesses looking to 
 
 ---
 
-## ✨ Features
-
-### 🌐 Public Website
+### 🌐 Public Website Features
 - **🏠 Landing Page** - Beautiful hero section with testimonials and call-to-action
 - **📝 Dynamic Blog** - SEO-friendly blog posts with categories, tags, and related content
 - **📧 Newsletter Signup** - Email subscription with confirmation system
